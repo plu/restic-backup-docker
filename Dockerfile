@@ -1,4 +1,4 @@
-FROM alpine:latest as rclone
+FROM alpine:3.17 as rclone
 
 # Get rclone executable
 ARG TARGETARCH
