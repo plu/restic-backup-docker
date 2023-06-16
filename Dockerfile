@@ -1,10 +1,11 @@
 FROM alpine:latest as rclone
 
 # Get rclone executable
-ADD https://downloads.rclone.org/rclone-current-linux-arm64.zip /
-RUN unzip rclone-current-linux-arm64.zip && mv rclone-*-linux-arm64/rclone /bin/rclone && chmod +x /bin/rclone
+ARG TARGETARCH
+ADD https://downloads.rclone.org/rclone-current-linux-${TARGETARCH}.zip /
+RUN unzip rclone-current-linux-${TARGETARCH}.zip && mv rclone-*-linux-${TARGETARCH}/rclone /bin/rclone && chmod +x /bin/rclone
 
-FROM bfriedrichs/restic-arm:latest
+FROM ghcr.io/plu/restic:latest
 
 RUN apk add --update --no-cache heirloom-mailx fuse curl
 
