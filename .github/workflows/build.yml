@@ -29,6 +29,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/arm64,linux/amd64
-          file: docker/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
